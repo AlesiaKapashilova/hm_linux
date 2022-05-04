@@ -19,7 +19,6 @@ class TestRegistrations(unittest.TestCase):
     user_name = 'Alesia'
     passw = 'Qwe123456!'
 
-
     @classmethod
     def setUpClass(cls) -> None:
         cls.browser = webdriver.Chrome(
@@ -33,11 +32,13 @@ class TestRegistrations(unittest.TestCase):
         cls.browser.quit()
 
     def test_registrations_fields(self):
-        field_first_name = self.browser.find_element(by=By.NAME, value="firstName")
+        field_first_name = self.browser.find_element(by=By.NAME,
+                                                     value="firstName")
         field_first_name.click()
         field_first_name.send_keys(self.first_name)
 
-        field_last_name = self.browser.find_element(by=By.NAME, value="lastName")
+        field_last_name = self.browser.find_element(by=By.NAME,
+                                                    value="lastName")
         field_last_name.click()
         field_last_name.send_keys(self.last_name)
 
@@ -61,34 +62,45 @@ class TestRegistrations(unittest.TestCase):
         field_state.click()
         field_state.send_keys(self.state)
 
-        field_postal_code = self.browser.find_element(by=By.NAME, value="postalCode")
+        field_postal_code = self.browser.find_element(by=By.NAME,
+                                                      value="postalCode")
         field_postal_code.click()
         field_postal_code.send_keys(self.post_code)
 
-        country_field = Select(self.browser.find_element(by=By.NAME, value="country"))
+        country_field = Select(
+            self.browser.find_element(by=By.NAME, value="country"))
         country_field.select_by_value("BELARUS")
 
         field_user_name = self.browser.find_element(by=By.ID, value="email")
         field_user_name.click()
         field_user_name.send_keys(self.user_name)
 
-        field_password = self.browser.find_element(by=By.NAME, value="password")
+        field_password = self.browser.find_element(by=By.NAME,
+                                                   value="password")
         field_password.click()
         field_password.send_keys(self.passw)
 
-        field_confirm_passw = self.browser.find_element(by=By.NAME, value="confirmPassword")
+        field_confirm_passw = self.browser.find_element(by=By.NAME,
+                                                        value="confirmPassword")
         field_confirm_passw.click()
         field_confirm_passw.send_keys(self.passw)
 
-        submit_button = self.browser.find_element(by=By.XPATH, value="/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[17]/td/input")
+        submit_button = self.browser.find_element(by=By.XPATH,
+                                                  value="//table/tbody/tr[17]/td/input")
         submit_button.click()
 
         my_account = self.browser.current_url
         self.assertEqual(my_account,
                          "https://demo.guru99.com/test/newtours/register_sucess.php")
 
-        my_names = self.browser.find_element(by=By.XPATH, value= "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[1]/font/b").text
+    def test_my_names(self):
+
+        my_names = self.browser.find_element(by=By.XPATH,
+                                             value="//table/tbody/tr[3]/td/p[1]/font/b").text
         self.assertEqual(my_names, f'Dear {self.first_name} {self.last_name},')
 
-        my_user_name = self.browser.find_element(by=By.XPATH, value= "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[3]/font/b").text
-        self.assertEqual(my_user_name, f'Note: Your user name is {self.user_name}.')
+    def test_my_user_name(self):
+        my_user_name = self.browser.find_element(by=By.XPATH,
+                                                 value="//table/tbody/tr[3]/td/p[3]/font/b").text
+        self.assertEqual(my_user_name,
+                         f'Note: Your user name is {self.user_name}.')
