@@ -11,7 +11,6 @@ pep517==0.12.0
 pip-tools==6.6.1
 pluggy==1.0.0
 py==1.11.0
-pyOpenSSL==22.0.0
 pyparsing==3.0.7
 PySocks==1.7.1
 pytest==7.1.1
