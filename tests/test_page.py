@@ -11,8 +11,7 @@ class TestMyStore(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        cls.browser = webdriver.Chrome(
-            "chromedriver")
+        cls.browser = webdriver.Chrome()
         cls.browser.maximize_window()
         cls.browser.get(cls.url)
         cls.browser.implicitly_wait(10)
