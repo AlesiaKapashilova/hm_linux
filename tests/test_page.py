@@ -10,8 +10,10 @@ class TestMyStore(unittest.TestCase):
     password = 'Qwe123456!'
 
     @classmethod
-    def setUpClass(cls) -> None:
-        cls.browser = webdriver.Chrome()
+    def setUpClass(cls) -> None:        
+        cls.browser.binary_location = r"/opt/google/chrome"
+        cls.browser = webdriver.Chrome(
+            "/home/alesya/les/homework/tests/chromedriver")
         cls.browser.maximize_window()
         cls.browser.get(cls.url)
         cls.browser.implicitly_wait(10)
