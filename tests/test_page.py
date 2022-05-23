@@ -11,8 +11,11 @@ class TestMyStore(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        cls.browser = webdriver.Chrome(
-            "/home/alesya/les/homework/tests/chromedriver")
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
+        cls.browser = webdriver.Chrome(chrome_options=chrome_options, executable_path='/home/alesya/les/homework/tests/chromedriver')
         cls.browser.maximize_window()
         cls.browser.get(cls.url)
         cls.browser.implicitly_wait(10)
