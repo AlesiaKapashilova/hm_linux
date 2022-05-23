@@ -11,7 +11,6 @@ class TestMyStore(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:        
-        cls.browser.binary_location = r"/etc/alternative/google-chrome"
         cls.browser = webdriver.Chrome(
             "/home/alesya/les/homework/tests/chromedriver")
         cls.browser.maximize_window()
